@@ -1,0 +1,65 @@
+
+.dropdown {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure dropdown appears above other elements */
+  }
+  .bubble-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align buttons to the start */
+    padding: 5px 8px;
+    margin-left: 12px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--cu-border-default); /* Matches ClickUp's border */
+    background-color:white; /* Matches ClickUp's background */
+    /* Enable horizontal scroll for overflow */
+    white-space: nowrap; /* Prevent wrapping of buttons */
+    gap: 8px; /* Add spacing between buttons */
+    width: auto; /* Adjust width to fit content */
+    max-width: 100%; /* Ensure it stays within container width */
+    min-width: 485px; /* Minimum width to ensure a proper background */
+  }
+  .bubble-menu button {
+    background: #F5F7FA;
+    border: 1px solid #DCDFE6;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #555555;
+    white-space: nowrap; /* Ensure icons and text remain in one line */
+  }
+  .bubble-menu button:hover {
+    background: #E6F7FF;
+    border-color: #1890FF;
+    color: #1890FF;
+  }
+  .bubble-menu button.is-active {
+    background: #E6F7FF;
+    border-color: #1890FF;
+    color: #1890FF;
+    font-weight: bold;
+  }
+  .bubble-menu button svg {
+    width: 16px;
+    height: 16px;
+  }
+  .custom-placeholder::before {
+    color: #000000;  /* Change this to your desired color */
+  }
+  
