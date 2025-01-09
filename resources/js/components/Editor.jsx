@@ -68,7 +68,7 @@ const Editor = ({ noteId }) => {
     useEffect(() => {
         if (noteId) {
             axios
-                .get(`/notes/${noteId}`)
+                .get(`/get-notes/${noteId}`)
                 .then((response) => {
                     setNote(response.data.content);
                     setTitle(response.data.title);

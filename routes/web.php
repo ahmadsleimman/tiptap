@@ -11,13 +11,9 @@ Route::get('/', function () {
 
 //Display
 Route::get('/notes', [NoteController::class, 'showNotes'])->name('notes.show');
-//Autosave
-Route::get('/notes/{id}', [NoteController::class, 'show'])->name('notes.show');
-//Update
-Route::put('/notes/{id}', [NoteController::class, 'update'])->name('notes.update');
-//Delete
-Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->name('notes.destroy');
-//Create
-Route::post('/notes/create', [NoteController::class, 'store'])->name('notes.store');
+// get note data
+Route::get('/get-notes/{id}', [NoteController::class, 'show'])->name('notes.show');
+//autosave
+Route::put('notes/{id}', [NoteController::class, 'update'])->name('notes.update');
 //Edit
 Route::get('/notes/{id}/edit', [NoteController::class, 'edit'])->name('notes.edit');

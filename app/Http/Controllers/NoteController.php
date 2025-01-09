@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-
+use Illuminate\Http\JsonResponse;
 use App\Models\Note;
 use Illuminate\Http\Request;
 
@@ -12,18 +12,42 @@ class NoteController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|integer',  // Ensure user_id is required and is an integer
         ]);
-    
-        // Fetch notes based on the validated user_id
+        // $notes = Note::all();
+        // // Fetch notes based on the validated user_id
         $notes = Note::where('user_id', $validated['user_id'])->get();
     
         // Return the filtered notes to the view
-        return view('notes', compact('notes'));
+        
+        return response()->json($notes);
     }
+
+
+
+
+    // public function showNotes()
+    // {
+    //     // Fetch all notes
+    //     $notes = Note::all();
+
+    //     // Return the notes as a JSON response
+    //     return response()->json($notes, 200);
+    // }
+
+
+
+
+
+
+
     public function show($id)
     {
         $note = Note::findOrFail($id);
         return response()->json($note);
     }
+
+
+
+
     public function edit($id)
 {
     $note = Note::findOrFail($id); // Find the note by ID or fail
@@ -34,6 +58,14 @@ class NoteController extends Controller
         'noteId' => $note->id
     ]);
 }
+
+
+
+
+
+
+
+
     public function editor($id)
     {
         $note = Note::findOrFail($id);
@@ -41,6 +73,13 @@ class NoteController extends Controller
         $title = $note->title;
         return view('editor',['title'=>$title,'content'=>$content,'noteId'=>$id]);
     }
+
+
+
+
+
+
+
 
     public function store(Request $request)
     {
@@ -64,6 +103,13 @@ class NoteController extends Controller
         
     }
 
+
+
+
+
+
+
+
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -76,16 +122,26 @@ class NoteController extends Controller
 
         return response()->json(['message' => 'Note updated successfully', 'data' => $note]);
     }
+
+
+
+
+
+
+
+
+
+
     public function destroy($id): JsonResponse
-    {
-        $note = Note::find($id);
+{
+    $note = Note::find($id);
 
-        if (!$note) {
-            return response()->json(['message' => 'Note not found'], 404);
-        }
-
-        $note->delete();
-
-        return response()->json(['message' => 'Note deleted successfully'], 200);
+    if (!$note) {
+        return response()->json(['message' => 'Note not found'], 404);
     }
+
+    $note->delete();
+
+    return response()->json(['message' => 'Note deleted successfully'], 200);
+}
 }
