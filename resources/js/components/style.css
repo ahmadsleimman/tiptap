@@ -1,65 +1,133 @@
-
 .dropdown {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensure dropdown appears above other elements */
-  }
-  .bubble-menu {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Align buttons to the start */
-    padding: 5px 8px;
-    margin-left: 12px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-    border: 1px solid var(--cu-border-default); /* Matches ClickUp's border */
-    background-color:white; /* Matches ClickUp's background */
-    /* Enable horizontal scroll for overflow */
-    white-space: nowrap; /* Prevent wrapping of buttons */
-    gap: 8px; /* Add spacing between buttons */
-    width: auto; /* Adjust width to fit content */
-    max-width: 100%; /* Ensure it stays within container width */
-    min-width: 485px; /* Minimum width to ensure a proper background */
-  }
-  .bubble-menu button {
-    background: #F5F7FA;
-    border: 1px solid #DCDFE6;
-    border-radius: 4px;
-    padding: 6px 8px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: #555555;
-    white-space: nowrap; /* Ensure icons and text remain in one line */
-  }
-  .bubble-menu button:hover {
-    background: #E6F7FF;
-    border-color: #1890FF;
-    color: #1890FF;
-  }
-  .bubble-menu button.is-active {
-    background: #E6F7FF;
-    border-color: #1890FF;
-    color: #1890FF;
-    font-weight: bold;
-  }
-  .bubble-menu button svg {
-    width: 16px;
-    height: 16px;
-  }
-  .custom-placeholder::before {
-    color: #000000;  /* Change this to your desired color */
-  }
-  
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure dropdown appears above other elements */
+}
+.bubble-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align buttons to the start */
+  padding: 5px 8px;
+  margin-left: 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--cu-border-default); /* Matches ClickUp's border */
+  background-color:white; /* Matches ClickUp's background */
+  /* Enable horizontal scroll for overflow */
+  white-space: nowrap; /* Prevent wrapping of buttons */
+  gap: 8px; /* Add spacing between buttons */
+  width: auto; /* Adjust width to fit content */
+  max-width: 100%; /* Ensure it stays within container width */
+  min-width: 485px; /* Minimum width to ensure a proper background */
+}
+.bubble-menu button {
+  background: #F5F7FA;
+  border: 1px solid #DCDFE6;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #555555;
+  white-space: nowrap; /* Ensure icons and text remain in one line */
+}
+.bubble-menu button:hover {
+  background: #E6F7FF;
+  border-color: #1890FF;
+  color: #1890FF;
+}
+.bubble-menu button.is-active {
+  background: #E6F7FF;
+  border-color: #1890FF;
+  color: #1890FF;
+  font-weight: bold;
+}
+.bubble-menu button svg {
+  width: 16px;
+  height: 16px;
+}
+.custom-placeholder::before {
+  color: #000000;  /* Change this to your desired color */
+}
+/* General font-family */
+body {
+font-family: 'Fellix', sans-serif;
+}
+/* Centering the title and styling */
+.title {
+text-align: center;
+color: #800000;
+font-size: 2rem;
+font-weight: bold;
+margin-top: 20px;
+}
+/* Subtitle area styling */
+.subtitle-area {
+text-align: left;
+margin: 10px 0 20px;
+font-size: 1.2rem;
+color: #555;
+padding: 20px 0px 0px 170px;
+
+}
+/* Logo placement at the top left */
+.logo-container {
+position: absolute;
+top: 10px;
+left: 10px;
+width: 80px;
+height: 80px;
+}
+.logo-container img {
+width: 100%;
+height: auto;
+border-radius: 8px; /* Optional for rounded corners */
+}
+/* Editor container: Fixed size */
+.editor-container {
+margin: 20px auto;
+max-width: 80%; /* Matches the subtitle width */
+height: 600px; /* Fixed height for the container */
+border-radius: 10px;
+background: #fff;
+
+overflow: hidden; /* Prevent content from spilling outside */
+display: flex;
+align-items: stretch; /* Makes the inner content stretch vertically */
+}
+/* ProseMirror editable area with internal scrolling */
+.ProseMirror {
+height: 100%; /* Fill the height of the editor container */
+width: 100%; /* Fill the width of the container */
+padding: 20px;
+box-sizing: border-box; /* Include padding in width/height */
+font-size: 1rem;
+line-height: 1.5;
+overflow-y: auto; /* Enable scrolling for content inside ProseMirror */
+cursor: text; /* Ensure the cursor changes to text */
+display: flex;
+flex-direction: column; /* Ensure proper multi-line content flow */
+}
+/* Ensure the editable area spans the full container */
+.tiptap-editor {
+padding: 20px;
+min-height: 100%; /* Ensures the editable area spans the full height of the container */
+width: 100%; /* Editable area spans full width */
+font-size: 1rem;
+line-height: 1.5;
+cursor: text; /* Shows text cursor */
+outline: none; /* Removes any browser focus outlines */
+box-sizing: border-box; /* Includes padding in width/height calculations */
+}

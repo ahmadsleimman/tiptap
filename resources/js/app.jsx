@@ -4,6 +4,6 @@ import Editor from './components/Editor';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Editor />
+        <Editor noteId={noteId}  />
     </React.StrictMode>
 );

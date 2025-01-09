@@ -1,0 +1,84 @@
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Models\Note;
+use Illuminate\Http\JsonResponse;
+
+class NoteController extends Controller
+{
+    public function showNotes()
+{
+    $notes = Note::all(); // Fetch all notes from the database
+    return view('notes', compact('notes'));
+}
+
+public function destroy($id): JsonResponse
+    {
+        $note = Note::find($id);
+
+        if (!$note) {
+            return response()->json(['message' => 'Note not found'], 404);
+        }
+
+        $note->delete();
+
+        return response()->json(['message' => 'Note deleted successfully'], 200);
+    }
+
+    public function store(Request $request)
+    {
+            // Validate the incoming request data
+            $validated = $request->validate([
+               'title' => 'nullable|string',
+                'content' => 'nullable|string',
+            ]);
+
+            // Create a new note in the database
+            $note = Note::create([
+                'title' => $validated['title'],
+                'content' => $validated['content'],
+            ]);
+            return redirect()->route('notes.edit', ['id' => $note->id])->with('success', 'Note created successfully. You can now edit it.');
+
+        //     // Return a JSON response
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Note created successfully.',
+        //         'data' => $note,
+        //     ], 201);
+
+        // } catch (\Exception $e) {
+        //     // Handle any errors and return a JSON response
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Failed to create note.',
+        //         'error' => $e->getMessage(),
+        //     ], 500);
+        
+    }
+public function edit($id)
+{
+    $note = Note::findOrFail($id); // Find the note by ID or fail
+
+    return view('editor', [
+        'title' => $note->title,
+        'content' => $note->content,
+        'noteId' => $note->id
+    ]);
+}
+}
+
+
+
+
+
+Route::get('/editor/{id}', [NoteController::class, 'editor'])->name('editor');
+
+
+public function editor($id)
+    {
+        $note = Note::findOrFail($id);
+        $content = $note->content;
+        $title = $note->title;
+        return view('editor',['title'=>$title,'content'=>$content,'noteId'=>$id]);
+    }
